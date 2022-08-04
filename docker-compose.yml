@@ -2,7 +2,11 @@ version: "3.9"
 
 services:
   php-fpm:
-    build: ./docker/php-fpm
+    build:
+      context: ./docker/php-fpm
+      args: 
+        - USER_ID=${USER_ID_VALUE}
+        - GROUP_ID=${GROUP_ID_VALUE}
     volumes:
       - ./www:/var/www/
     ports:

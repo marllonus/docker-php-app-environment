@@ -1,5 +1,8 @@
 FROM php:8.1-fpm
 
+ARG USER_ID
+ARG GROUP_ID
+
 COPY ./php-conf.d/php.ini-development "$PHP_INI_DIR"
 COPY ./php-conf.d/php.ini-production "$PHP_INI_DIR"
 COPY --from=composer:2.3.10 /usr/bin/composer /usr/local/bin/composer
@@ -10,6 +13,9 @@ RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini" && \
 	apt-get install -y libzip-dev zip unzip && \
 	docker-php-ext-install zip
 
+RUN addgroup --gid $USER_ID user && \
+	adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID user
+USER user
 WORKDIR /var/www/
 
 EXPOSE 9000
