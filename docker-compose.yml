@@ -16,6 +16,8 @@ services:
 
   nginx:
     build: ./docker/nginx
+    env_file:
+      - ./docker/nginx/hosts.env
     volumes:
       - ./www:/var/www/
     ports:
