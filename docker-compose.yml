@@ -9,8 +9,8 @@ services:
         - GROUP_ID=${GROUP_ID_VALUE}
     volumes:
       - ./www:/var/www/
-    ports:
-      - "9000"
+        #ports:
+        #- "9000"
     links:
       - mysql
 
@@ -21,7 +21,7 @@ services:
     volumes:
       - ./www:/var/www/
     ports:
-      - "80"
+      - "49154:80"
     links:
       - "php-fpm:php"
 
@@ -45,7 +45,7 @@ services:
     volumes:
       - /path/to/config:/config
     ports:
-      - 3000:3000
+      - "49155:3000"
     cap_add:
       - IPC_LOCK
-    restart: unless-stopped
+    #restart: unless-stopped
