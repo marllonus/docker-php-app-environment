@@ -13,6 +13,7 @@ RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini" && \
 	apt-get update && \
         curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION} | bash - &&\
         apt-get install -y nodejs &&\
+        npm add -D sass &&\
 	apt-get install -y libzip-dev zip unzip && \
 	docker-php-ext-install zip
 
