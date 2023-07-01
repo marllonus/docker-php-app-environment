@@ -1,2 +1,2 @@
 install:
-	docker-compose exec php-fpm composer create-project laravel/laravel $(name)
+	docker-compose exec php-fpm su user -c 'composer create-project laravel/laravel $(name)'
