@@ -35,6 +35,13 @@ services:
     volumes:
       - ./data/mysql:/var/lib/mysql
 
+  redis:
+    image: redis:latest
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - "49156:6379"
+
   mysql-workbench:
     image: lscr.io/linuxserver/mysql-workbench:latest
     container_name: mysql-workbench

@@ -11,6 +11,9 @@ COPY --from=composer:2.3.10 /usr/bin/composer /usr/local/bin/composer
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini" && \
 	docker-php-ext-install mysqli pdo pdo_mysql && \
 	apt-get update && \
+        pecl install -o -f redis && \
+        rm -rf /tmp/pear && \
+        docker-php-ext-enable redis && \
         curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION} | bash - &&\
         apt-get install -y nodejs &&\
         npm add -D sass &&\
